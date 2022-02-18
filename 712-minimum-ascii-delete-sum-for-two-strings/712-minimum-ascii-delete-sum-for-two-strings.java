@@ -1,8 +1,70 @@
 class Solution {
     int dp[][]=new int[1001][1001];
     public int minimumDeleteSum(String s1, String s2) {
-        return memo(s1,s2,0,0);
+        return dp(s1,s2);
     }
+    
+    //dynamic programming
+    int dp(String s1,String s2)
+    {
+        int n=s1.length();
+        int m=s2.length();
+        for(int i=1;i<s1.length()+1;i++)
+        {
+            dp[i][0]=(int)s1.charAt(i-1)+dp[i-1][0];
+        }
+        for(int j=1;j<s2.length()+1;j++)
+        {
+            dp[0][j]=(int)s2.charAt(j-1)+dp[0][j-1];
+        }
+        for(int i=1;i<n+1;i++)
+        {
+            for(int j=1;j<m+1;j++)
+            {
+                if(s1.charAt(i-1)==s2.charAt(j-1))
+                {
+                    dp[i][j]=dp[i-1][j-1];
+                }
+                else
+                {
+                    dp[i][j]=Math.min(dp[i][j-1]+s2.charAt(j-1),dp[i-1][j]+s1.charAt(i-1));
+                }
+            }
+        }
+        return dp[n][m];
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //recursion
       int rec(String s1,String s2)
       {
