@@ -6,14 +6,14 @@ class Solution {
         nsl(heights,n,left);
         nsr(heights,n,right);
         int max=0;
-        for(int i=0;i<n;i++)
-        {
-            System.out.print(left[i]);
-        }
-        for(int i=0;i<n;i++)
-        {
-            System.out.print(right[i]);
-        }
+        // for(int i=0;i<n;i++)
+        // {
+        //     System.out.print(left[i]);
+        // }
+        // for(int i=0;i<n;i++)
+        // {
+        //     System.out.print(right[i]);
+        // }
         for(int i=0;i<n;i++)
         {
            int val=right[i]-left[i]-1;
