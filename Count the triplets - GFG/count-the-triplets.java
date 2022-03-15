@@ -29,31 +29,35 @@ class GFG {
 //User function Template for Java
 
 class Solution {
-    int countTriplet(int a[], int n) {
+    int countTriplet(int arr[], int n) {
         // code here
+        int start=0;
+        Arrays.sort(arr);
+         
+       // int end=n-1;
         int count=0;
-        Arrays.sort(a);
-        for(int i=n-1;i>=0;i--)
+        for(int end=n-1;end>1;end--)
         {
-            int start=0;
-            int end=i-1;
-            while(start<end)
+            start=0;
+            int cur=end-1;
+            while(start<cur)
             {
-                int sum=(a[start]+a[end])-a[i];
-                if(sum==0)
+                int sum=arr[start]+arr[cur];
+                if((sum-arr[end])==0)
                 {
-                    count++;
-                    start++;
-                    end--;
+                  count++; 
+                  start++;
+                 cur--;
                 }
-                else if((a[start]+a[end])>a[i])
+                else if(sum<arr[end])
                 {
-                    end--;
+                    start++;
                 }
                 else
                 {
-                 start++;
+                    cur--;
                 }
+                
             }
         }
         return count;
