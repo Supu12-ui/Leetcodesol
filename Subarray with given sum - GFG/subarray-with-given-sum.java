@@ -34,28 +34,68 @@ class Solution
     //Function to find a continuous sub-array which adds up to a given number.
     static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
     {
-        // Your code here
-        ArrayList<Integer> ans=new ArrayList<Integer>();
+        ArrayList<Integer> ans=new ArrayList<>();
+        int index=0;
+        int sum=0;
         for(int i=0;i<n;i++)
         {
-            int sum=0;
+            sum=sum+arr[i];
+            if(arr[i]==s)
+            {
+               ans.add(i+1);
+                ans.add(i+1); 
+                return ans;
+            }
+            while(sum>s && index<i-1)
+            {
+                sum=sum-arr[index];
+                
+                index++;
+            }
+            if(sum==s)
+            {
+                ans.add(index+1);
+                ans.add(i+1);
+                return ans;
+            }
             
-          for(int j=i;j<n;j++)
-          {
-              sum=sum+arr[j];
-              if(sum==s)
-              {
-                  ans.add(i+1);
-                  ans.add(j+1);
-                  return ans;
-              }
-              else if(sum>s)
-              {
-                  break;
-              }
-          }
+               
         }
         ans.add(-1);
         return ans;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // Your code here
+        // ArrayList<Integer> ans=new ArrayList<Integer>();
+        // for(int i=0;i<n;i++)
+        // {
+        //     int sum=0;
+            
+        //   for(int j=i;j<n;j++)
+        //   {
+        //       sum=sum+arr[j];
+        //       if(sum==s)
+        //       {
+        //           ans.add(i+1);
+        //           ans.add(j+1);
+        //           return ans;
+        //       }
+        //       else if(sum>s)
+        //       {
+        //           break;
+        //       }
+        //   }
+        // }
+        // ans.add(-1);
+        // return ans;
     }
 }
