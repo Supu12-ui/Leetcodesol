@@ -1,5 +1,5 @@
 # Count the triplets
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><div><span style="font-size:18px">Given an array of distinct integers. The task is to count all the triplets such that sum of two elements equals the third element.</span></div>
 
