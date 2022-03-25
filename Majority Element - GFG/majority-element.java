@@ -32,27 +32,67 @@ class Solution
 {
     static int majorityElement(int a[], int size)
     {
-        // your code here
-        if(size==1)
-        {
-            return a[0];
-        }
-        HashMap<Integer,Integer> hm=new HashMap<>();
-        for(int i=0;i<size;i++)
-        {
-            if(hm.containsKey(a[i]))
-            {
-              hm.put(a[i],hm.getOrDefault(a[i],0)+1);
-              if(hm.get(a[i])>size/2)
-              {
-                  return a[i];
-              }
-            }
+         int count=0;
+         int ele=0;
+         if(size==1)
+         {
+             return a[0];
+         }
+         for(int i=0;i<size;i++)
+         {
+             if(count==0)
+             {
+                 ele=a[i];
+                 count=1;
+             }
             else
             {
-                hm.put(a[i],1);
+            if(ele==a[i])
+             {
+                 count++;
+             }
+             else
+             {
+                 count--;
+             }
             }
-        }
-        return -1;
+         }
+         int count1=0;
+       for(int i=0;i<size;i++)
+       {
+           if(a[i]==ele)
+           {
+              count1++; 
+           }
+       }
+       if(count1>size/2)
+       {
+           return ele;
+       }
+       return -1;
+        
+        
+        //o(nlogn)
+        // if(size==1)
+        // {
+        //     return a[0];
+        // }
+        // HashMap<Integer,Integer> hm=new HashMap<>();
+        // for(int i=0;i<size;i++)
+        // {
+        //     if(hm.containsKey(a[i]))
+        //     {
+        //       hm.put(a[i],hm.getOrDefault(a[i],0)+1);
+        //       if(hm.get(a[i])>size/2)
+        //       {
+        //           return a[i];
+        //       }
+        //     }
+        //     else
+        //     {
+        //         hm.put(a[i],1);
+        //     }
+        // }
+        // return -1;
     }
 }
