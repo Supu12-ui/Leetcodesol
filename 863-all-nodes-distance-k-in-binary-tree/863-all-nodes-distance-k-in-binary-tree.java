@@ -32,9 +32,9 @@ class Solution {
         HashMap<TreeNode,TreeNode> hm=new HashMap<>();
         cal(root,hm);
         Queue<TreeNode> q=new LinkedList<>();
-       HashSet<TreeNode> vist=new HashSet<>();
+       HashMap<TreeNode,Boolean> vist=new HashMap<>();
         q.add(target);
-        vist.add(target);
+        vist.put(target,true);
            int dist=0;
         while(q.size()!=0)
         {
@@ -47,21 +47,21 @@ class Solution {
             for(int i=0;i<size;i++)
             {
                 TreeNode temp=q.poll();
-               if(temp.left!=null && !vist.contains(temp.left))
+               if(temp.left!=null && !vist.containsKey(temp.left))
                {
                   q.add(temp.left);
-                  vist.add(temp.left);
+                  vist.put(temp.left,true);
                }
-                if(temp.right!=null && !vist.contains(temp.right))
+                if(temp.right!=null && !vist.containsKey(temp.right))
                 {
                     q.add(temp.right);
-                    vist.add(temp.right);
+                    vist.put(temp.right,true);
                 }
                 TreeNode check=hm.get(temp);
-                if( check!=null &&!vist.contains(check))
+                if( check!=null &&!vist.containsKey(check))
                 {
                     q.add(check);
-                    vist.add(check);
+                    vist.put(check,true);
                 }
             }
             dist++;
