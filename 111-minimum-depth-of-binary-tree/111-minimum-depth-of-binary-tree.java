@@ -16,18 +16,16 @@
 class Solution {
     public int minDepth(TreeNode root) {
        
-        if(root==null)
-        {
+        if (root == null)
             return 0;
-        }
-        int l=minDepth(root.left);
-        int r=minDepth(root.right);
-        if(l==0||r==0)
-        {
-            return Math.max(l,r)+1;
-        }
-        int min=Math.min(l,r)+1;
-        return min;
+		//if there is only right child get depth of it
+        if (root.left == null)
+            return minDepth(root.right) + 1;
+		//similarly if there is only left child  get depth of it
+        else if (root.right == null)
+            return minDepth(root.left) + 1;
+		//in case there are both  get the min of both
+        return Math.min(minDepth(root.right), minDepth(root.left)) + 1; 
          
         
     }
