@@ -40,19 +40,19 @@ class Solution {
                     q.add(temp.right);
                 }
             }
-            ans.add(new ArrayList<>(l));
+            ans.add(0,l);
         }
-        int start=0;
-        int end=ans.size()-1;
-       while(start<end)
-       {
-            List<Integer> temp= ans.get(start);
-            ans.set(start,ans.get(end));
-            ans.set(end,temp);
-           start++;
-           end--;
+//         int start=0;
+//         int end=ans.size()-1;
+//        while(start<end)
+//        {
+//             List<Integer> temp= ans.get(start);
+//             ans.set(start,ans.get(end));
+//             ans.set(end,temp);
+//            start++;
+//            end--;
 
-        }
+//         }
         System.out.println(ans);
         return ans;
         
