@@ -15,31 +15,39 @@
  */
 class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-         List<List<Integer>> result = new ArrayList<>();    // result.get(i) contains all nodes at the i-th level
-    helper(result, root, 0);
-    
-    return result;   
-}
-
-// reverse level-order traversal
-private void helper(List<List<Integer>> result, TreeNode currNode, int currLevel) {
-    
-    if (currNode == null) return;
-    
-    // if this is the first node we encountered at currLevel, then we create a new list for the current level, otherwise just add currNode to the appropriate list
-    if (result.size() == currLevel) {
-        result.add(0, new ArrayList<>());  
-        result.get(result.size() - 1 - currLevel).add(currNode.val);
         
-    } else {
-        result.get(result.size() - 1 - currLevel).add(currNode.val);
+            List<List<Integer>> ans=new ArrayList<>();
+            if(root==null)
+            {
+                return ans;
+            }
+            cal(root,ans,0);
+            int start=0;
+            int end=ans.size()-1;
+            while(start<end)
+            {
+                 List<Integer> temp= ans.get(start);
+                 ans.set(start,ans.get(end));
+                  ans.set(end,temp);
+                 start++;
+                 end--;
+            }
+            return ans;
+        }
+        void cal(TreeNode root,List<List<Integer>> ans,int level)
+        {
+            if(root==null)
+            {
+                return;
+            }
+            if(ans.size()<=level){
+                ans.add(new ArrayList<>());
+            }
+            ans.get(level).add(root.val);
+            cal(root.left,ans,level+1);
+            cal(root.right,ans,level+1);
+        }
     }
-    
-    helper(result, currNode.left, currLevel + 1);
-    helper(result, currNode.right, currLevel + 1);
-}
-}
-        
 //         List<List<Integer>> ans=new ArrayList<>();
 //         if(root==null)
 //         {
