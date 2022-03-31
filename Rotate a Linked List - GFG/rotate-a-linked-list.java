@@ -65,52 +65,30 @@ class Solution{
     //Function to rotate a linked list.
     public Node rotate(Node head, int k) {
         // add code here
-        Node dummy;
-        int h=height(head);
-        if(k>=h||k==0)
+        Node cur=head;
+        int count=1;
+        if(k==0)
         {
             return head;
         }
-        else
+        while(count<k && cur!=null)
         {
-            k=k-1;
-            Node temp=head;
-            while(k!=0)
-            {
-                temp=temp.next;
-                k--;
-            }
-            
-            Node cur=temp.next;
-            dummy=new Node(cur.data);
             cur=cur.next;
-            Node prev=dummy;
-            while(cur!=null)
-            {
-              prev.next=new Node(cur.data);
-              cur=cur.next;
-              prev=prev.next;
-            }
-            Node temp1=head;
-            while(temp1!=temp.next)
-            {
-                prev.next=new Node(temp1.data);
-                prev=prev.next;
-                temp1=temp1.next;
-            }
+            count++;
         }
-        return dummy;
-    }
-    public int height(Node head)
-    {
-       if(head==null)
-       {
-           return 0;
-       }
-      
-       int rec=height(head.next);
-       rec=rec+1;
-       return rec;
-       
+        if(cur==null)
+        {
+            return head;
+        }
+        Node kthNode=cur;
+        while(cur.next!=null)
+        {
+            cur=cur.next;
+        }
+        cur.next=head;
+        head=kthNode.next;
+        kthNode.next=null;
+        return head;
+        
     }
 }
