@@ -14,28 +14,23 @@
  * }
  */
 class Solution {
-    int val=0;
-    int a=0;
+    ArrayList<Integer> ans=new ArrayList<>();
     public int kthSmallest(TreeNode root, int k) {
        cal(root,k);
+       int val= ans.get(k-1);
         return val;
     
     }
-   int  cal(TreeNode root,int k)
+   void cal(TreeNode root,int k)
    {
        if(root==null)
        {
-           return 0;
+           return;
        }
        cal(root.left,k);
-       a++;
-       if(a==k)
-       {
-           val=root.val;
-          
-       }
+       ans.add(root.val);
      
        cal(root.right,k);
-      return val;
+      
    }
 }
