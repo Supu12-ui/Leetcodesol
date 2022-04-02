@@ -25,12 +25,12 @@ class Solution {
         }
         if(root.val>val)
         {
-           return  searchBST(root.left,val);
+            return searchBST(root.left,val);
         }
-         else
-         {
-           return  searchBST(root.right,val);
-         }
-    
+        else
+        {
+            return searchBST(root.right,val);
+        }
+        
     }
 }
