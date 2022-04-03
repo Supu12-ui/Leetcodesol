@@ -26,12 +26,18 @@ class Solution {
         {
             return 0;
         }
+        if(root.val>low)
+        {
         range(root.left,low,high);
+        }
         if(root.val>=low && root.val<=high)
         {
             sum=sum+root.val;
         }
+          if(root.val<high)
+          {
         range(root.right,low,high);
+          }
         return sum;
     }
 }
