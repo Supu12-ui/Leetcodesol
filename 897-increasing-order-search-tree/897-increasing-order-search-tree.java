@@ -16,19 +16,19 @@
 class Solution {
     TreeNode prev=null;
     public TreeNode increasingBST(TreeNode root) {
-       faltten(root);
+       flatten(root);
        return prev; 
     }
-    void faltten(TreeNode root)
+    void flatten(TreeNode root)
     {
          if(root==null)
         {
             return;
         }
-        increasingBST(root.right);
+       flatten(root.right);
         root.right=prev;
         prev=root;
-        increasingBST(root.left);
+        flatten(root.left);
          root.left=null;
       
         
