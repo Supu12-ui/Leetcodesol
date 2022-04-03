@@ -35,16 +35,16 @@ public class Solution {
         }
        ListNode temp=fast;
         fast=head;
-        while(slow!=fast)
+        while(slow!=null && fast!=null)
         {
-            if(slow.next==null || fast.next==null)
+            if(slow==fast)
             {
-                return null;
+                return slow;
             }
             slow=slow.next;
             fast=fast.next;
         }
-        return slow;
+        return null;
         
     }
 }
