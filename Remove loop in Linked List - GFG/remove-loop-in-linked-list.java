@@ -109,41 +109,63 @@ class Solution
     public static void removeLoop(Node head){
         // code here
         // remove the loop without losing any nodes
-        Node fast=head;
+        if(head==null)
+        {
+            return ;
+        }
+        Node intersection=start(head);
+        if(intersection==null)
+        {
+            return;
+        }
+         Node check=intersection;
+         while(check.next!=intersection)
+         {
+             check=check.next;
+         }
+         check.next=null;
+         
+        
+    }
+    static public Node start(Node head)
+    {
+        if(head==null)
+        {
+            return null;
+        }
+        Node point=loop(head);
+        if(point==null)
+        {
+            return null;
+            
+        }
+        Node start=head;
+        while(start!=point)
+        {
+            start=start.next;
+            point=point.next;
+        }
+        return start;
+    }
+    public static Node loop(Node head)
+    {
+        if(head==null)
+        {
+            return null;
+        }
         Node slow=head;
-        while(fast.next!=null && fast!=null&&fast.next.next!=null)
+        Node fast=head;
+        while(fast!=null && fast.next!=null)
         {
             slow=slow.next;
             fast=fast.next.next;
             if(slow==fast)
             {
-                break;
+                return slow;
             }
+            
         }
-         if(slow==fast)
-        {
-            slow=head;
-            Node prev=null;
-          if(fast==head)
-          {
-            while(fast!=slow.next)
-            {
-                slow=slow.next;
-            }
-            slow.next=null;
-          }
-            else
-            {
-            while(slow!=fast)
-            {
-                
-                slow=slow.next;
-                prev=fast;
-                fast=fast.next;
-            }
-            prev.next=null;
-            }
-        }
-        
+        return null;
     }
+    
 }
