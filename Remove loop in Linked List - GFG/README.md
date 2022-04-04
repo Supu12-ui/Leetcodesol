@@ -62,6 +62,6 @@ You don't need to read input or print anything.&nbsp;Your task is to&nbsp;comple
 
 <p><br>
 <span style="font-size:18px"><strong>Constraints:</strong><br>
-1 ≤ N ≤ 10<sup style="">4</sup></span></p>
+1 ≤ N ≤ 10<sup>4</sup></span></p>
  <p></p>
             </div>
