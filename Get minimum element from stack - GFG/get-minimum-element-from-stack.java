@@ -49,64 +49,66 @@ class GfG
 {
     int minEle;
     Stack<Integer> s;
-
-    /*returns min element from stack*/
     public GfG()
     {
-        this.s=new Stack<>();
+       this.s=new Stack<>();
     }
+    /*returns min element from stack*/
     int getMin()
     {
-       if(s.size()==0)
-       {
-           return -1;
-       }
-       return minEle;
-       
-     }
-    
-    /*returns poped element from stack*/
-    int pop()
-    {
-        
       if(s.size()==0)
       {
           return -1;
       }
-      int ans=s.pop();
-      if(minEle>ans)
-      {
-          int val=minEle;
-         int ans1=2*minEle-ans;
-         minEle=ans1;
-        return val;
-      }
       else
       {
-	 return ans;
+          return minEle;
       }
+    }
+    
+    /*returns poped element from stack*/
+    int pop()
+    {
+	// Your code here	
 	
-	
+	if(s.size()==0)
+	{
+	    return -1;
+	}
+	int ans=s.pop();
+     if(minEle>ans)
+     {
+         int val=minEle;
+         int ans1=2*minEle-ans;
+         minEle=ans1;
+         return val;
+     }
+     else
+     {
+         return ans;
+     }
     }
 
     /*push element x into the stack*/
     void push(int x)
     {
-     if(s.size()==0)
-     {
-         s.push(x);
-         minEle=x;
-     }
-     else if(x<minEle)
-     {
-         int ans=x*2-minEle;
-         minEle=x;
-         s.push(ans);
-     }
-     else
-     {
-        s.push(x); 
-     }
+	// Your code here	
+	
+	if(s.size()==0)
+	{
+	    s.push(x);
+	    minEle=x;
+	}
+	else if(x<minEle)
+	{
+	    int val=2*x-minEle;
+	    s.push(val);
+	    minEle=x;
+	}
+	else
+	{
+	    s.push(x);
+	}
     }	
 }
 
