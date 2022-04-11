@@ -41,7 +41,7 @@ class Solution {
           if(i-idx==m)
           {
               idx=i;
-              System.out.println(ans);
+             
               nums.add(new ArrayList<>(ans));
               ans.clear();
               ans.add(temp.get(i));
@@ -49,7 +49,7 @@ class Solution {
           else
           {
               ans.add(temp.get(i));
-              System.out.println(ans);
+             
           }
         }
         nums.add(new ArrayList<>(ans));
