@@ -16,48 +16,22 @@
 class Solution {
     TreeNode prev=null;
     public TreeNode increasingBST(TreeNode root) {
-       faltten(root);
+       flatten(root);
        return prev; 
     }
-    void faltten(TreeNode root)
+    void flatten(TreeNode root)
     {
          if(root==null)
         {
             return;
         }
-        increasingBST(root.right);
+       flatten(root.right);
         root.right=prev;
         prev=root;
-        increasingBST(root.left);
+        flatten(root.left);
          root.left=null;
       
         
     }
-  
+ 
 }
-// public TreeNode increasingBST(TreeNode root) {
-//         TreeNode dummy=new TreeNode(-1);
-//         TreeNode temp1=dummy;
-//         Stack<TreeNode> st=new Stack<>();
-        
-//         TreeNode temp=root;
-//         while(temp!=null || st.size()!=0)
-//         {
-//             while(temp!=null)
-//             {
-//                st.push(temp);
-//                 temp=temp.left;
-               
-//             }
-//             temp=st.pop();
-//             TreeNode node=new TreeNode(temp.val);
-//             temp1.right=node;
-//             temp=temp.right;
-//            temp1=temp1.right;
-//         }
-//         return dummy.right;
-        
-        
-//     }
-//Time Complexity - o(n)
-//Space Complexity - o(n)
