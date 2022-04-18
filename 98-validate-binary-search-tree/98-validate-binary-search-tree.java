@@ -26,16 +26,16 @@ class Solution {
         }
       
         boolean l=check(root.left,min,root.val);
-        if(root.val>=max)
+        if(root.val>=max||root.val<=min)
         {
             return false;
         }
         
         boolean r=check(root.right,root.val,max);
-        if(root.val<=min)
-        {
-            return false;
-        }
+        // if(root.val<=min)
+        // {
+        //     return false;
+        // }
         
         return l&&r;
     }
