@@ -24,13 +24,18 @@ class Solution {
         {
             return true;
         }
-       if(root.val>=max||root.val<=min)
-        {
-           return false;
-        }
+      
         boolean l=check(root.left,min,root.val);
+        if(root.val>=max)
+        {
+            return false;
+        }
         
         boolean r=check(root.right,root.val,max);
+        if(root.val<=min)
+        {
+            return false;
+        }
         
         return l&&r;
     }
