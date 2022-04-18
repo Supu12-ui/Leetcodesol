@@ -16,21 +16,21 @@
 class Solution {
     ArrayList<Integer> ans=new ArrayList<>();
     public int kthSmallest(TreeNode root, int k) {
-       cal(root,k);
-       int val= ans.get(k-1);
-        return val;
-    
+        if(root==null)
+        {
+            return -1;
+        }
+        solve(root,k);
+        return ans.get(k-1);
     }
-   void cal(TreeNode root,int k)
-   {
-       if(root==null)
-       {
-           return;
-       }
-       cal(root.left,k);
-       ans.add(root.val);
-     
-       cal(root.right,k);
-      
-   }
+    public void solve(TreeNode root,int k)
+    {
+        if(root==null)
+        {
+            return;
+        }
+        solve(root.left,k);
+        ans.add(root.val);
+        solve(root.right,k);
+    }
 }
