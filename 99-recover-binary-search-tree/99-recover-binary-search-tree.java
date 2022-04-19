@@ -14,33 +14,45 @@
  * }
  */
 class Solution {
-    TreeNode first=null,prev=null,second=null;
+    ArrayList<TreeNode> arr=new ArrayList<>();
     public void recoverTree(TreeNode root) {
-       inorder(root);
-        int temp=first.val;
-        first.val=second.val;
-        second.val=temp;
+        check(root);
+        TreeNode prev=arr.get(0);
+        TreeNode cur=arr.get(1);
+         int i=1;
+        while(i<arr.size())
+        {
+           if(arr.get(i-1).val>arr.get(i).val)
+           {
+               prev=arr.get(i-1);
+              
+               break;
+           }
+            i++;
+        }
+        int temp=prev.val;
+        while(i<arr.size())
+        {
+            if(arr.get(i-1).val>arr.get(i).val)
+            {
+                cur=arr.get(i);
+            }
+            i++;
+        }
+        System.out.println(cur.val+" "+temp);
+        prev.val=cur.val;
+        cur.val=temp;
         
     }
-    void inorder(TreeNode root)
+    public void check(TreeNode root)
     {
         if(root==null)
         {
             return;
         }
-        inorder(root.left);
-        if(prev!=null && prev.val>=root.val)
-        {
-            if(first==null)
-            {
-            first=prev;
-            }
-            second=root;
-            
-        }
-        prev=root;
-        inorder(root.right);
+        check(root.left);
+        arr.add(root);
+        check(root.right);
     }
-   
     
 }
