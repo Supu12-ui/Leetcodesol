@@ -19,7 +19,7 @@ class Solution {
     TreeNode temp=null;
     public void recoverTree(TreeNode root) {
        check(root);
-        System.out.println(prev.val+" "+cur.val);
+       // System.out.println(prev.val+" "+cur.val);
         int temp1=prev.val;
         prev.val=cur.val;
         cur.val=temp1;
