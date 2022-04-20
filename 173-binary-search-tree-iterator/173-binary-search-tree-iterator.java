@@ -29,7 +29,7 @@ class BSTIterator {
             return -1;
         }
         TreeNode temp=st.pop();
-        System.out.println(temp.val);
+       // System.out.println(temp.val);
         if(temp.right!=null)
         {
            
