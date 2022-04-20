@@ -14,37 +14,15 @@
  * }
  */
 class BSTIterator {
-    ArrayList<Integer> ans=new ArrayList<>();
-   TreeNode node=null;
-    int start=0;
-     
-
+  ArrayList<Integer> ans;
+    int p=0;
     public BSTIterator(TreeNode root) {
-      node=root;
-        inorder(node);
-      
+        ans=new ArrayList<>();
+        inorder(root);
         
-    }
-    
-    public int next() {
        
-        int val=ans.get(start);
-       // System.out.println(ans);
-        start++;
-        return val;
     }
-    
-    public boolean hasNext() {
-       // System.out.println(start);
-        if(start<ans.size())
-        {
-            return true;
-        }
-        
-        return false;
-        
-    }
-    void inorder(TreeNode root)
+    public void inorder(TreeNode root)
     {
         if(root==null)
         {
@@ -55,6 +33,27 @@ class BSTIterator {
         inorder(root.right);
     }
     
+    public int next() {
+      if(hasNext()==true)
+      {
+          int val=ans.get(p);
+          p++;
+          return val;
+      }
+        return -1;
+        
+    }
+    
+    public boolean hasNext() {
+        if(p!=ans.size())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 /**
