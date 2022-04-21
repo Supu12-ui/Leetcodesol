@@ -121,51 +121,44 @@ class Solution
     //Function to return a list containing the bottom view of the given tree.
     public ArrayList <Integer> bottomView(Node root)
     {
-        sol s=new sol();
-       return s.sol(root);
+      Queue<pair> q=new LinkedList<>();
+      TreeMap<Integer,ArrayList<Integer>> hm=new TreeMap<>();
+      ArrayList<Integer> ans=new ArrayList<>();
+      pair p=new pair(root,0,0);
+      q.add(p);
+      while(q.size()!=0)
+      {
+          pair temp=q.poll();
+          if(!hm.containsKey(temp.col))
+          {
+              hm.put(temp.col,new ArrayList<>());
+          }
+          hm.get(temp.col).add(temp.root.data);
+          if(temp.root.left!=null)
+          {
+              q.add(new pair(temp.root.left,temp.row+1,temp.col-1));
+          }
+          if(temp.root.right!=null)
+          {
+              q.add(new pair(temp.root.right,temp.row+1,temp.col+1));
+          }
+      }
+      for(int key:hm.keySet())
+      {
+          ans.add(hm.get(key).get((hm.get(key).size())-1));
+      }
+      return ans;
     }
 }
 class pair
 {
-int row;
-int col;
-Node root;
-public pair(Node root,int row,int col)
-{
-this.row=row;
-this.col=col;
-this.root=root;
-}
-}
-class sol
-{
-ArrayList<Integer> sol(Node root)
-{
- Queue<pair> pq=new LinkedList<>();
- TreeMap<Integer,Integer> hm=new TreeMap<>();
- 
- pq.add(new pair(root,0,0));
- while(pq.size()>0)
-{
-pair temp=pq.peek();
-pq.remove();
-hm.put(temp.col,temp.root.data);
-if(temp.root.left!=null)
-{
-pq.add(new pair(temp.root.left,temp.row+1,temp.col-1));
-}
-if(temp.root.right!=null)
-{
-pq.add(new pair(temp.root.right,temp.row+1,temp.col+1));
-}
-}
-ArrayList<Integer> ans=new ArrayList<>();
-for(int key:hm.keySet())
-{
-ans.add(hm.get(key));
-}
-return ans;
-
-
-}
+    Node root;
+    int row;
+    int col;
+    public pair(Node root,int row,int col)
+    {
+        this.root=root;
+        this.row=row;
+        this.col=col;
+    }
 }
