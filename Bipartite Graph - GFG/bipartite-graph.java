@@ -38,52 +38,47 @@ class Solution
 {
     public boolean isBipartite(int V, ArrayList<ArrayList<Integer>>adj)
     {
+        // Code here
         int vis[]=new int[V];
-        for(int i=0;i<vis.length;i++)
+        for(int i=0;i<V;i++)
         {
             vis[i]=-1;
         }
-        Queue<Integer> pq=new LinkedList<>();
         for(int i=0;i<V;i++)
         {
             if(vis[i]==-1)
             {
-                vis[i]=1;
-                pq.add(i);
-               if(! dfs(adj,vis,pq)){
-                   return false;
-                  }
-               
-            }
-        }
-        return true;
-        
-    }
-    boolean dfs(ArrayList<ArrayList<Integer>> adj,int vis[],Queue<Integer> q)
-    {
-        while(q.size()!=0)
-        {
-            int val=q.peek();
-            q.poll();
-            for(int i=0;i<adj.get(val).size();i++)
+            vis[i]=0;
+            boolean has=bfs(adj,i,0,vis);
+           
+           
+            if(!has)
             {
-                int check=adj.get(val).get(i);
-                if(vis[check]==-1)
-                {
-                    q.add(check);
-                   vis[check]=1-vis[val];
-                }
-                else if(vis[val]==vis[check])
-                {
-                    
-                    
-                        return false;
-                    
-                }
-                
+                return false;
             }
-            
+            }
         }
         return true;
+    }
+    public boolean bfs(ArrayList<ArrayList<Integer>> adj,int src,int cur,int vis[] )
+    {
+      for(int i=0;i<adj.get(src).size();i++)
+      {
+          int check=adj.get(src).get(i);
+          if(vis[check]==-1)
+          {
+              vis[check]=1-vis[src];
+              boolean haspath=bfs(adj,check,src,vis);
+              if(!haspath)
+              {
+                  return false;
+              }
+          }
+          else if(vis[check]==vis[src])
+          {
+              return false;
+          }
+      }
+      return true;
     }
 }
