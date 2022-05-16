@@ -125,32 +125,34 @@ class Tree
     ArrayList<Integer> leftView(Node root)
     {
       // Your code here
-     
-      ArrayList<Integer> ans=new ArrayList<>();
-       if(root==null)
-      {
-          return ans;
-      }
       Queue<Node> q=new LinkedList<>();
-      q.add(root);
-      while(q.size()!=0)
+      ArrayList<Integer> al=new ArrayList<>();
+      if(root==null)
       {
-          int size=q.size();
-          ans.add(q.peek().data);
-          for(int i=0;i<size;i++)
-          {
-             Node temp=q.poll();
-             if(temp.left!=null)
-             {
-                 q.add(temp.left);
-             }
-             if(temp.right!=null)
-             {
-                 q.add(temp.right);
-             }
-          }
-          
+          return al;
       }
-      return ans;
+      q.add(root);
+       while(q.size()!=0)
+       {
+           int size=q.size();
+           for(int i=0;i<size;i++)
+           {
+               Node temp=q.remove();
+               if(i==0)
+               {
+                   al.add(temp.data);
+               }
+               if(temp.left!=null)
+               {
+                   q.add(temp.left);
+               }
+               if(temp.right!=null)
+               {
+                   q.add(temp.right);
+               }
+           }
+       }
+       return al;
+      
     }
 }
