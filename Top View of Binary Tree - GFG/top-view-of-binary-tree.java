@@ -122,6 +122,17 @@ class Node{
     }
 }
 */
+class pair 
+{
+    Node root;
+    int col;
+    public pair(Node root,int col)
+    {
+        this.root=root;
+        this.col=col;
+    }
+    
+}
 
 class Solution
 {
@@ -129,65 +140,46 @@ class Solution
     //from left to right in Binary Tree.
     static ArrayList<Integer> topView(Node root)
     {
-      cal c=new cal();
-      return c.ver(root);
-      
-        
-    }
-}
-class pair
-{
-   int row;
-   int col;
-   Node root;
-   public pair(Node root,int row,int col)
-   {
-       this.row=row;
-       this.col=col;
-       this.root=root;
-   }
-
-}
-class cal
-{
-    ArrayList<Integer>  ver(Node root)
-    {
-        Queue<pair> pq=new LinkedList<>();
-        TreeMap<Integer,ArrayList<Integer> > hm=new TreeMap<>();
-        pair p=new pair(root,0,0);
+       Queue<pair> q=new LinkedList<>();
+       pair p=new pair(root,0);
+       q.add(p);
+      TreeMap<Integer,Integer> hm=new TreeMap<>(); 
+       int minl=0;
+       int maxr=0;
+       while(q.size()!=0)
+       {
+           pair temp=q.remove();
+           if(temp.col<=minl)
+           {
+               minl=temp.col;
+           }
+           if(temp.col>=maxr)
+           {
+               maxr=temp.col;
+           }
+           if(!hm.containsKey(temp.col))
+           {
+             hm.put(temp.col,temp.root.data);  
+           }
+           if(temp.root.left!=null)
+           {
+             pair p1=new pair(temp.root.left,temp.col-1);
+             q.add(p1);
+           }
+           if(temp.root.right!=null)
+           {
+             pair p1=new pair(temp.root.right,temp.col+1);
+             q.add(p1);
+           }
+           
+       }
+       ArrayList<Integer> ans=new ArrayList<>();
+       for(int key:hm.keySet())
+       {
+           int val=hm.get(key);
+           ans.add(val);
+       }
+       return ans;
        
-        pq.add(p);
-        while(pq.size()>0)
-        {
-            pair temp=pq.peek();
-            pq.poll();
-            if(!hm.containsKey(temp.col)) hm.put(temp.col,new ArrayList<>());
-            hm.get(temp.col).add(temp.root.data);
-            if(temp.root.left!=null)
-            {
-                pq.add(new pair(temp.root.left,temp.row+1,temp.col-1));
-
-            }
-            if(temp.root.right!=null)
-            {
-                pq.add(new pair(temp.root.right,temp.row+1, temp.col+1));
-
-            }
-        }
-    
-        ArrayList<Integer> ans=new ArrayList<>();
-        for(int key:hm.keySet())
-        {
-           int value=hm.get(key).get(0);
-           ans.add(value);
-        }
-        return ans;
-
-        
-
     }
 }
-
-
-
-
