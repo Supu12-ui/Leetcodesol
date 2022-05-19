@@ -13,7 +13,42 @@
  *     }
  * }
  */
+//morris traveral
 class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> ans=new ArrayList<>();
+        TreeNode cur=root;
+        while(cur!=null)
+        {
+            if(cur.left==null)
+            {
+                ans.add(cur.val);
+                cur=cur.right;
+            }
+            else
+            {
+                TreeNode imp=cur.left;
+                while(imp.right!=null && imp.right!=cur)
+                {
+                imp=imp.right;
+                }
+                if(imp.right==null)
+                {
+                    imp.right=cur;
+                    cur=cur.left;
+                }
+                else
+                {
+                    ans.add(cur.val);
+                    imp.right=null;
+                    cur=cur.right;
+                }
+            }
+        }
+        return ans;
+    }
+}
+class solution1 {
     public List<Integer> inorderTraversal(TreeNode root) {
      List<Integer> ans=new ArrayList<>();
      Stack<TreeNode> st=new Stack<>();
