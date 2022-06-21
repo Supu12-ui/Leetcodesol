@@ -1,38 +1,47 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
-     Arrays.sort(intervals,(a,b)->a[0]-b[0]);
-        Stack<pair> st=new Stack<>();
-        st.push(new pair(intervals[0][0],intervals[0][1]));
-        for(int i=1;i<intervals.length;i++)
+        Arrays.sort(intervals,(a,b)-> a[0]-b[0]);
+        int n=intervals.length;
+       ArrayList<ArrayList<Integer>> ans=new ArrayList<>();
+        if(n==1)
         {
-            if(st.peek().end>=intervals[i][0])
+            return intervals;
+        }
+        ArrayList<Integer> temp=new ArrayList<>();
+        temp.add(intervals[0][0]);
+        temp.add(intervals[0][1]);
+        ans.add(new ArrayList<>(temp));
+        int j=1;
+        for(int i=1;i<n;i++)
+        {
+            if(ans.get(j-1).get(1)<intervals[i][0])
             {
-                st.peek().end=Math.max(st.peek().end,intervals[i][1]);
+               ArrayList<Integer> t=new ArrayList<>();
+                t.add(intervals[i][0]);
+                t.add(intervals[i][1]);
+                ans.add(new ArrayList<>(t));
+                j++;
             }
             else
             {
-                st.push(new pair(intervals[i][0],intervals[i][1]));
+                if(ans.get(j-1).get(1)>intervals[i][1])
+                {
+                    continue;
+                }
+                else
+                {
+                ans.get(j-1).add(1,intervals[i][1]);
+                }
             }
         }
-        int arr[][]=new int[st.size()][2];
-        for(int i=st.size()-1;i>=0;i--)
+        int val[][]=new int[ans.size()][2];
+        for(int i=0;i<ans.size();i++)
         {
-              arr[i][0]=st.peek().start;
-               arr[i][1]=st.peek().end;
-            st.pop();
-            
+            for(int k=0;k<2;k++)
+            {
+                val[i][k]=ans.get(i).get(k);
+            }
         }
-        return arr;
-        
-    }
-}
-class pair
-{
-    int start;
-    int end;
-    public pair(int start,int end)
-    {
-        this.start=start;
-        this.end=end;
+        return val;
     }
 }
