@@ -30,10 +30,10 @@ class Solution {
         }
         
         int l=solve(root.left);
-        if(l==-1) return -1;
+    
           
         int r=solve(root.right);
-        if(r==-1) return -1;
+        if(l==-1||r==-1) return -1;
         if(Math.abs(l-r)>1)
         {
            return -1; 
