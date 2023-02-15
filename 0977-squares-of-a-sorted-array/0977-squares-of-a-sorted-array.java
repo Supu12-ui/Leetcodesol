@@ -1,22 +1,22 @@
 class Solution {
     public int[] sortedSquares(int[] nums) {
         int end=nums.length-1;
-        PriorityQueue<Integer> pq=new PriorityQueue<>();
-        for(int i=0;i<nums.length;i++)
+        int start=0;
+        int result[]=new int[nums.length];
+        for(int i=end;i>=0;i--)
         {
-            nums[i]=nums[i]*nums[i];
-            pq.add(nums[i]);
-           
+            if(Math.abs(nums[start])<Math.abs(nums[end]))
+            {
+                result[i]=nums[end]*nums[end];
+                end--;
+            }
+            else
+            {
+                result[i]=nums[start]*nums[start];
+                start++;
+            }
         }
-        int i=0;
-        while(pq.size()>0)
-        {
-            int val=pq.poll();
-            nums[i]=val;
-            i++;
-        }
-        
-        return nums;
+        return result;
     }
     
 }
