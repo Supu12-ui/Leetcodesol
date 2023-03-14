@@ -14,19 +14,14 @@
  * }
  */
 class Solution {
+    int sum=0;
     public int sumNumbers(TreeNode root) {
-       ArrayList<String> ans=new ArrayList<>();
-        rec(root,ans,"");
-        System.out.println(ans);
-        int sum=0;
-        for(int i=0;i<ans.size();i++)
-        {
-            int num=Integer.parseInt(ans.get(i));
-            sum=sum+num;
-        }
+       
+        rec(root,"");
+        
         return sum;
     }
-    public void rec(TreeNode root,ArrayList<String> ans,String temp)
+    public void rec(TreeNode root,String temp)
     {
         if(root==null)
         {
@@ -35,11 +30,12 @@ class Solution {
         if(root.left==null && root.right==null)
         {
             temp=temp+Integer.toString(root.val);
-            ans.add(temp);
+            int num=Integer.parseInt(temp);
+            sum=sum+num;
             return;
         }
         
-        rec(root.left,ans,temp+Integer.toString(root.val));
-        rec(root.right,ans,temp+Integer.toString(root.val));
+        rec(root.left,temp+Integer.toString(root.val));
+        rec(root.right,temp+Integer.toString(root.val));
     }
 }
