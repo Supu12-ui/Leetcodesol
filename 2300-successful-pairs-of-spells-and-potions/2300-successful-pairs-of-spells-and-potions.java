@@ -12,14 +12,14 @@ class Solution {
             while(start<=end)
             {
                 int mid=(start+end)/2;
-                if((potions[mid]*temp)<success)
+                if((potions[mid]*temp)>=success)
                 {
-                   //ans[i]++; 
-                   start=mid+1;
+                   ans[i]=m-end;
+                   end=mid-1;
                 }
                 else
                 {
-                    end=mid-1;
+                    start=mid+1;
                 }
             }
             ans[i]=(m-start);
