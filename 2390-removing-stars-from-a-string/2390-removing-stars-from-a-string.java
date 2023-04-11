@@ -4,21 +4,16 @@ class Solution {
       int i=0;
         int j=0;
         int n=s.length;
-        boolean not_star=false;
+       
         while(i<n)
         {
-            if(s[i]!='*' && not_star==false)
+           if(s[i]=='*')
             {
-                i++;
-                j++;
-            }
-            else if(s[i]=='*')
-            {
-                not_star=true;
+                
                 i++;
                 j--;
             }
-            else if(s[i]!='*' && not_star==true)
+            else if(s[i]!='*')
             {
                 s[j]=s[i];
                 j++;
@@ -26,10 +21,7 @@ class Solution {
             }
             
         }
-        if(not_star==false)
-        {
-            return s1;
-        }
+       
         
         String ans="";
         for(int m=0;m<j;m++)
