@@ -23,7 +23,7 @@ class Solution {
                   res.add(k);
               }
               res.add(1);
-              System.out.println(res);
+             
           }
           ans.add(res);
       }
